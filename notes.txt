@@ -779,4 +779,4 @@ nullptr --> lie in 1 scenario of above knowledge --> NULL --> imposter basically
 	
 	
 	
-dynamic method dispatched --> it happen after a late binding  
+dynamic method dispatched --> it happen after a late binding  S
