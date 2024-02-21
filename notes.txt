@@ -1,0 +1,782 @@
+Day 1 -- basically day 2 
+
+malloc 
+	-- c func --> sbreak --> break
+	-- internally malloc using a linkedlist 
+	-- another way is mmap --> paging type
+	-- it is a thread safe --> it maintain arena(like a specific area) 
+	-- high perfomance 
+	-- doesnot corrupt memory
+	-- crash when memory dont have/ overflow
+	
+
+new 
+	-- another is new[] and new (specific address)
+	-- do some house keeping
+	-- in new --> use malloc --> delete
+	-- in new[] --> use array or constructor of malloc n times depending on the size --> delete[]
+	-- new() --> same as new just a specific location
+	
+
+
+
+**********************************TOPICS***************************************************************
+
+PART 1 - CPP topics but modern cpp style
+
+
+	1 - default for constructor
+	2 - delete for constructor
+	3 - override
+	4 - member initializer list
+	5 - in-class initialization {}
+	6 - for-each(range based for loop)
+	7 - enum class
+	8 - constructor delegation
+	9 - using(alternate of typedef)
+	10 - uniform initialization (Modern cpp syntax)	
+	11 - vector(STL) -- still not use modern cpp way
+	12 - array (stl walla) -- still not use modern cpp way -- these are easy
+	13 - auto keyword
+	14 - decltype
+	15 - move semantics -- in progress
+	16 - std::move 
+	17 - rvalue reference = &&
+	18 - noexcept
+	19 - nullptr
+	20 - shared_ptr
+	21 - make_shared
+	22 - static_cast<target type> (expression)
+	23 - dynamic_cast<target type> (expression)
+
+
+	
+	
+		********************************DAY 1 HARSHIT****************************
+
+
+
+
+
+		
+	SYLLABUS
+	
+	4 PART 
+		
+		PART 1 --> ESSENTIALS OF MODERN CPP - CPP BUT MODERN STYLE -- 107 TOPICS
+		PART 2 --> FUNCTIONAL PROGRAMMING IN MODERN CPP (LIKE LAMDA) -- 5 TOPICS
+		PART 3 --> CONCURRENCY IN MODERN CPP AND CPP 17 (LIKE THREADING ,MULTITHREADIND) -- 
+		PART 4 --> STL EFFECTIVELY OR ULTRA PRO MAX
+		
+		
+	*****************************************RESOURCES********************************
+		NOT RECOMMENDED --> CHATGPT, CODEWITHHARRY, CODEWITHGENNIE, APNA COLLEGE, GEEKSFORGEEKS,
+				   LOVE BABBER, STRIVER
+		
+		RECOMMENDED --> MIKE SHAH --> PLAYLIST CPP(TOPIC WISE YOU CAN DO OR ALL) ,
+			      e(TECHNICALL HEAVY) --> ANNUAL CONFERRENCE --> BACK TO BASIC(ONLY),
+			      NULLPTR.COM(WEBSITE), CPPREFERRECE(WEBSITE), CPLUSPLUS.COM(WEBSITE)
+		
+		BOOKS --: BASIC = CPP THE COMPLETE REFERRENCE MIN 5TH
+			  MEDIUM = EFFECTIVE MODERN CPP AUTHOR SCOOT MEYERS TOP 3 CPP PROGRAMMER IN WORLD
+			  
+			  FOR THREADING --> CONCURRENCY IN ACTION 2017 EDITION LATEST
+			  TEMPLATES --> CPP TEMPLATES THE COMPLETE GUIDE 2 EDITION (BASIC AND MODERN(ONLY BUY 
+			  		MODERN)
+			  
+		
+		
+-->Make multiple files : 
+	touch Car.{h,cpp} ElectricCar.{h,cpp} DieselCar.{h,cpp} Main.cpp Functionalities.{h,cpp}
+
+-->Check Memory Leak : 
+	1. g++ Main.cpp -fsanitize=address -o app
+	2. valgrind --leak-check=full ./app
+
+
+-->Data Binding : Member functions needs to be bind with data members.
+               If a member functions are not using any data members of the class, it should be 		
+               eliminated.				
+
+--> whenever you make a call you have to specify all 6 constructor either you want to enable or disable
+--> 6 constructor are 
+	1 - default constructor
+	2 - parameter constructor
+	3 - copy constructor either deep or shallow
+	4 - move constructor Car(Car&&) 
+	5 - copy paste through assignment/ copy assignment Car& operator=(const Car&)
+	6 - move assignment Car& operator=(Car&&)
+
+	
+-->After setting Special members functions as default, we can initialize data members [std::string m_name {""};].
+
+
+
+
+--> Pillar of OOPS --> not actually 
+	1-Abstraction : Not providing the implemetation details so that 
+              - a) It can be provided at a later point in the code hierarchy
+              - b) We can explain functionality { without significant focus ) on the implementation details
+
+
+    2-Polymorphism : 
+            - Either you specialize the implemetation for a specific subcategory
+               OR
+            - You develop logic which can be generalized to many types
+    3-Encapsulation
+	4-inheritance
+	5-Classes and Objects
+	6-Composition
+	7-Aggregation
+	
+
+--> Case : Go 
+
+	it dont have class , objects, inheritance, method overloading
+	
+	still it support OOPS
+
+
+
+
+======== A developer when they are in their zone,  ---- You can do anything ---- ========
+
+--> OOP : 1) There should be a way to create models for data.
+      	  2) To represent the state of specific data.
+      	  3) To execute the function based on type of data.
+
+
+
+-->{} this use as for inclass initialization --> when default constructor is enabled and use camel case for variable and always use pascal metholodies to make file to distinguish to easily understand and avoid confusion
+
+
+--> default constructor enabled --> we use default after that ==> modern cpp syntax like Car() = default 
+    you can also use delete so it means that compiler disable this functionaliteis like Car() = delete
+    
+
+--> override -->  by adding this keyword compiler immediatly chk the signature of the function
+    		like float drive() override;
+    		
+
+--> stack --> static memory --> non scalable
+
+
+--> heap --> dynamic memory --> scalable
+
+
+--> pointer size is 8 byte in 64 bit and 4 in 32 bit --> kisi bhi type ko ho chaahe --> memory address is 8 byte
+
+
+--> try to avoid copy as much as possible so that you can save memory
+
+
+--> try to visualize the workflow of the memory and code --> make diagram --> use tool like debugger --> valgrind
+
+
+--> default and delete when using in constructor is modern cpp keyword and override too
+
+--> new is banned in modern cpp	
+	
+	
+	
+--> Const Keyword
+
+	1 - const is applied to the token(set of char. that has meaning in progrmming like int) on its immediate left.
+
+	If there is nothing to the left of const, apply const on the token to its immediate right
+	
+	2 - pointer symbol * is considered a separate token 
+	
+	3 - by memeber function const at the end of declaration --> means its safe for const object
+        because it function promise that its not going to change data member
+        
+        thats why only function marked as constant are going to called by const object
+		non const object -> const and non const function 
+		const object -> const function 
+
+
+
+
+
+
+*****************************************DAY 2 HARSHIT*****************************************************
+
+
+
+
+
+
+--> WHY WE USE ENUM CLASS INSTEAD OF ENUM 
+
+	enum --> data are two type --> real value like salary ,age
+                               --> categorical data --> like option type like gender, week, months which has fixed 
+                               count
+
+    for dealing categorical data we use enum to deal it
+    so that it can give one out of option and user dont abuse it
+
+    like --> enum Rank {}
+            enum Gear {}
+            enum Position {} // in any kind of scenario , like all have first , second 
+
+    Problem --> multi enum has same literals --> so due to same it give compiler time error
+            --> we cannot force the user to use enum name as a prefix
+            like enum Rank r1 = Rank::FIRST // so it cannot give same error
+
+            --> unnessary comparison --> example
+                enum Rank r1 = Rank::FIRST;
+                enum Gear g1 = Gear::FIRST;
+                if(r1 == g1) // this condition need to give error but it give true and also compiler should block
+                                the comparison of enums of different types
+                               wrong ==  1 - IF all enums in same file then compiler giver error
+                                2 - If not then not giving error
+
+            --> like we have func name magic --> void Magic(int number){ cout << number * number << endl;}
+                and we have enum Rank r1 = Rank::FIRST;
+                BUT if we pass Magic(r1) and it works but this is bad coz its a bad practice coz system is working
+                without your logic --> cpp people reason --> they belive the programmer doing something due to 
+                some logic
+
+            1 - we have to force the user to enum name as  a prefix
+            2 - we have to ban unnesary comparison
+            3 - implicit conversion is need to banned 
+
+
+            THATS WHY WE SHOULD USE ENUM CLASS INSTEAD OF ENUM
+            
+
+
+--> vector --> architecture --> so the data of the vector store in heap
+	   --> we have understand few things
+	   that the vector mainly working with three pointer 
+	   1 - holding the starting address 
+	   2 - holding the ending address --> which is basically the size
+	   3 - holding the max capacity --> like by default i believe its 100 and then it doubles
+	  --> it has 15/16 overloaded constructor
+	
+--> using keyword is a alternate of typedef in modern cpp
+
+
+--> whatever you write in "" is const char[] not a string it converted into string
+
+
+--> Modern cpp syntax 
+	
+    int arr[] = {1,2,3}
+    Engine e1(1,2,3)
+    Engine *e2 = new Engine(500,600);
+
+    //uniform initialization --> modern cpp syntax
+    int arr[] {1,2,3}
+    Engine e1{1,2,3}
+    Engine *e2 {new Engine{500,600}}
+    
+    
+--> DEBUGGER --> used when the code is compiled but give diff behaviour in runtime
+	Process how to set up 
+		-- Need to have patience
+		-- there has to be configuration file so that you can give a instruction to debugger
+		-- need to apply break point -- to make a run the program to till this point
+		-- when you performing the action - like you can prepare the file for debugging
+			--steps 
+		
+
+--> composition and aggregation
+	When i am using has - a relationship, when object a is destroying then object b which associate of a. is 
+	going to be destroyed
+		suppose	 when employee has a project --> then employee leaves the company --> if you want to
+		delete all data of employee including project then --> composition 
+		
+		but i you dont destroying the project then its called aggregation
+		
+
+
+--> call by value --> in which like in int main value = 100 and addr is 123 then if we call in any function 
+		      like this Magic(int value) then this will create copy of it means addr are going to
+		      change so that both main func call stack and Magic func call stack have diff value 
+		      variable
+		      
+		   
+--> call by reference --> in which in int main value = 100 and addr is 123 then if we call func like
+			 magic(&value) --> in this giving the access of this variable with name value
+			 you can change the name but addr of that variable is same --> then all changes 
+			 happen in func call stack of magic then it changes the values in main func call 
+			 stack value variable like gangadhar which is shaktiman so same person 
+			 
+			 --basically no memory just alternate name
+			 
+			 **IMP--> no copy and no pointer --> 0 extra cost --> its the most efficient way
+	
+	
+--> call by pointer -->  syntax is diff then call by referrence --> not good than refference 
+			syntax diff = when call func Magic(&value) and in para we show like this
+			void Magic(int *value)
+			
+			like you make one pointer which point to the address of value --> 8 byte data use
+			and with you can change the values from magic func stack to main func stack
+			
+			so values --> *ptr --> shows the value of varible value 
+				       ptr --> shows the address of variable value
+				       &ptr --> shows the address of the pointer 
+				       
+		        wasting 8 byte in context to call by reference
+				       
+			**IMP --> all data in stack not in heap to access heap use new,malloc etc
+			
+			
+--> c++ is not c extension --> take inspiration from smalltalk and c --> make mix language called cpp
+			       --> differnce is too much --> just the syntax is resemble the c
+			       --> which means that c code doesnot work on cpp the same as c 
+			       --> like struct is same as class but not in c and you can also
+			       	   do uniform initialization on struct too
+			       --> reason to study c for c++ coz in modern cpp all function on cpp
+			       
+			       
+			       --> convenience matter
+			       
+			    
+--> why we dont use using namespace std; --> namespace has a stack name variable --> like you cannot make
+				variable like cout and many more --> and if you make it compiler prefer yours 
+				and give error (logical or compiler) and in big project you dont know which 
+				variable give ambiguity --> coz there are so many keyword you don't know
+				
+				int cout = 10;
+    				int endl = 10; * these are valid when not in use of namespace std;
+				
+				
+			
+--> bits/stdc++.h--> just chk word count using {g++ demo.cpp -E | grep wc -l} --> 35k+ lines added on source code
+
+
+
+--> in modern cpp you are going to use partially header file in cpp 
+
+
+--> in incubation periods --> ya training any skill for the project
+			  --> ya material to learn for the project
+			  --> ya presentation for project 
+			  --> or all 
+			   	   	 	
+			   	   	 	
+--> for harshit overview in evaluation --> min marathon  2/3
+	    --> mega marathon 3/5 minimum and mcq 10/20 - 50% -- you will get A
+	    --> PSD --> swapnilla head of psd --> Mansi (CEO daughter){take not lightly} --> reason --> mostly 
+	    clients are foreign --> we need it --> marking style not sure
+	    
+	    
+--> cxxtestgen --> with this tool you can do unit testing
+
+
+--> mcqs of cpp --> code snippets 
+
+
+--> auto keyword --> allows you to declare a variable without datatypes if and only if you are also initializing 
+		     the values at a same --> when only values in rhs 
+		     use case--
+		     for each loop
+		     iterative for loop --> where begin and end iterator
+		     return type of a function
+		     lamda variable type
+		     function parameter with auto
+		     template parametes for lamda -- cpp14 
+		     auto&& syntax in for loop
+		     
+		     
+		     
+     BEST PRACTICES for auto --> 1 - dont use auto when you dont have any idea what exactly will replace the auto
+				std::vector<int> v {1,2,3,4,5}
+				auto itr = v.begin()
+				alternate and best is - std::vector<int>::iterator = v.begin()
+			
+		       2 - always verify whether auto can be used where you are using it(context)
+		       		magic(auto n1){ } -- support in cpp20
+
+		       3 - more u use auto it make bad you code readability
+		       
+		       
+		       
+--> decltype keyword --> basically it allow you to fetch and assign3 any declared data type like
+				std::vector<int> v1 {1,2,3}
+				decltype(v1) v2 {1,2,3} // using decltype we make vector of v2
+				
+
+
+
+
+				
+       **********************************DAY 3 HARSHIT**************************************** 
+	
+	
+	
+				
+ 			UML DIAGRAM				
+				
+				
+--> Association --> object of one class use as functionalities for other class
+		--> Bi directional Association --> like flight plane relationship
+		--> 0..* ------------------------- 0..1 (means zero or more flights is associated with zero or one 
+		plane)
+		--> coding wise think like that pointer of both classes have present in each other classes
+		
+		--> uni directional Association --> 
+		
+		------------------->0..*  
+		
+		RMG  (resource manager) ----------------->     EMPLOYEE
+					        	0..*
+						
+		like overdrawnAccountReport --------------->0..* BankAccount
+		
+		
+		
+--> Some Notation --> 0..1 = zero or one
+		      0..* = zero or more
+		      0 = only zero
+		      1 = only one
+		      3 = only three
+		      1..* = one or more
+		      0..5 = zero or five
+		      
+		      
+		    
+--> Packages --> multi classes are wraped in a box --> in inside you can do inheritance or whatever
+
+		another way to show other than classes is inside the box
+		 make package box above then add + and points line to multi classes
+		 
+		 
+		 
+--> Other notes for uml in copy 
+
+
+
+  					BACK TO MODERN CPP
+  					
+ 
+--> move semantics --> without duplicating data how do we move data from to another using pointer
+			like changing ownership
+	
+				like we have vector v1 has 150 integers
+				and we want copy the data but we dont have 
+				access of hardware so we go to os and ask 
+				for memory access and we copy it
+				
+				but if we have scenario like we want a copy 
+				of data but want remove from source and fill 
+				to destination 
+				
+				look like a moving a data
+				
+				in old way --> we take another vector and move data
+				and null it --> but thats bad 
+				--> data copy --> null spaces --> and delete it
+				
+				--> better solutin --> we just want that v2 has a v1 
+				data and v1 -- need to null
+				
+				we all know that vector have three pointer 
+				and we just have to transfer pointer and remove the original 
+				ones from them  --> just remap the pointer 
+				--> becomes efficient too much 
+				
+				--> now --> copy pointer --> make original ones null or delete
+				took only 24 bytes  
+				
+				--> to figure it --> it took 25 years --> to intigrate in compiler also
+				
+				--> done by call by pointer
+				
+				--> i have lots of data in heap and it was originally in func and i want to access 
+				the data in func2 such a way func no longer owns the data and without coping
+				
+				--> Thats a great way to optimize memory
+				
+				
+				
+-->  int n = 4 has four token 
+		1 - int (data type)
+		2 - n (variable name) lvalue -- which has both memory and name
+		3 - = (assignment operator)
+		4 - 4 (rhs) rvalue (integar literal)
+		
+		any form of data that is not preserved 
+   		in a fixed location in memory will disappear
+    		at the end of the expression (full expression)
+    		where it originated
+
+    		like 
+    		10;temporary(rvalue) --> after ";" then its existances removed
+    		
+    		basically,
+    		until memory not assign --> temporary
+        	memory assign --> persist (means it stays)
+		
+		
+		
+--> * Must have Subjects *
+    OS
+    Databases
+    CN
+    Computer Architecture
+    Distributed Computing -- optional
+
+
+--> call by lvalue and rvalue
+
+	#include<iostream>
+	#include<list>
+
+	//call by lvalue
+	//call by rvalue
+
+	void Magic(std::list<int>&data){
+
+	}
+
+	void WeirdMagic(std::list<int>&&data){
+
+	}
+
+
+	int main(int argc, char const *argv[])
+	{   
+	    std::list<int> l1 {1,2,3,4,5};
+	    Magic(l1); //call by lvalue reference
+	    WeirdMagic(std:list<int> {1,2,3,4,5}); 
+	    
+	    // call by rvalue reference 
+	    // if you want to preserve the data so you have to bind it to memory address else at the ";" it 
+	    //destroyed
+	    //thats why we move to func using move semantics WeirdMagic(std::list<int> &&data)
+	    // now Weird Magic controls the life of data 
+	    //semantics -- we see lifetime, ownership, etc
+	    //1 - WeirdMagic can only be called by a rvalue 
+        	it means the user will never be able to copies One in caller(Main) 
+        	function and one in callee(WeirdMagic) function
+    
+    	    //2 - Thats a great way to optimize memory
+	    
+	    return 0;
+	}
+	
+	
+	
+-->std::move function --> can convert lvalue into rvalue
+
+
+--> where lvalue or owner there is only scope
+
+
+--> again move semantics --> scenario --> 
+				
+				
+				scenario 1: Design the function to accept lvalue and rvalue both
+					    Allow copy of lvalue and assignment of rvalue
+				
+				void Magic(std::vector<int> val)
+				Main(){
+					Magic(........)
+				}
+				
+				        example: 
+					     
+					     Magic(std::vector<int> {1,2,3});
+					     assignment to val
+					     
+					example:
+					 
+					     std::vector<int> v {1,2,3};
+					     Magic(v) 
+					     V 24bytes (pointer) copy to val 
+					     copy construction We are contructing val by using 
+					     v 
+					     
+					     
+				scenario 2: lvalue to be accepted by reference
+					     No rvalues (temporaries, no ownership transfer)
+					     No copy of data. Data should become accessible
+					     
+				
+						void Magic(std::vector<int>& val)
+						Main(){
+							Magic(........)
+						}
+					
+					      example: 
+					            
+					            std::vector<int> v {1,2,3}
+					            Magic(v) --- by reference
+					            Magic(std::vector<int> {1,2,3}); -- give compile time
+					                 error -- coz reference dissallow the temporary data
+					                 means rvalue
+					                 
+					                 
+				scenario 3: I only want a single copy of data
+					    I only want rvalues so that user cannot create or 
+					    duplicate copy of data in the caller function(main)
+					    Data should no longer be owned by Main
+					    
+					    void Magic(std::vector<int> &&data){}
+					                 		
+				            example:
+				            
+				            std::vector<int> v {1,2,3}
+				            Magic(v) // by ref --> give compile time error
+				            
+				            Magic(std::vector<int> {1,2,3}) --> okay
+				            
+				            Magic(std::move(v)) --> okay --> move convert to rvalue
+				            
+				            
+				            
+				scenario 4: I want to design a function where, lvalues are accepted by reference.
+					    I also want rvalues to be accepted by assignment.
+					    
+					    [destination function will only see data as read-only]
+					    
+					    void Magic(const std::vector<int>& val){}
+					    
+					    example:
+					    
+					    Magic(v) // by reference --> okay
+					    
+					    Magic(std::vector<int> {1,2,3}) // by reference --> okay
+					    
+					    Magic(std::move(v)) // by rvalue reference --> okay
+					    
+					
+					
+						
+-->noexcept keyword --> like void show() noexcept {} --> when you want the function will not going to throw 
+			exceptions --> prevent any unneccessary bug/exception --> preventy check --> like
+			override 
+			
+			use case : when you feel that this func not give you exception but you are nervous due
+			           to any included library or else
+
+			
+			1 - no exceptions --> all okay
+			2 - give exceptions --> compiler with warning
+			3 - give exceptions --> compiler -Werror -Wextra --> compile time error		
+
+
+
+why we add features in language--> 1- It enhances the language with brand new feature
+		    		   2 - a - It improves an existing feature (pointers --> smart pointers)
+		        	       b - It improves and existing feature inspired from C languange which had a 
+		        	       drawback (enum class)
+		        	       
+		        	       
+		        	       
+		        	      
+nullptr --> lie in 1 scenario of above knowledge --> NULL --> imposter basically a 0 
+	    main problem is NULL can be used with different datatypes other than pointer 
+	    so better hygiene and code readibility we use nullptr coz its only pointer specific
+			
+
+
+
+***************************************** DAY 4 Harshit *******************************	
+
+
+
+--> pointer --> by default use new to make heap pointer and it is dificult to handle it --> need to 	
+		free at correct spot if not then memory leak happen
+		
+		
+		ptr  [0x100H]
+		     [0x11H]
+		name = ptr 
+		content = 0x100H
+		size = 8 bytes
+		address = 0x11H
+		
+		
+		-- Dummy() 
+			ex1 ----------------------> Heap [10 | Gourav]
+			[0x100H] to [0x107H]
+			<-- 8bytes -->
+			
+			n1
+			[0]
+			4 bytes
+			
+			0x45H to  0x48H		  
+			
+			
+		data : pointer ex
+		function which is guranteed to execute each time an object is destroyed: destructor
+		action before data (ex1) is destroyed : heap allocation using delete ex1     
+			
+			
+			
+--> Destructor doesnot delete the object --> it execute just before the object is destroyed
+		--> Only use as a logic -- like we wanna add some functionalities -- one final thing
+		--> before the object is destroyed
+		
+		
+		
+--> smart pointer --> like make a pointer as a object and use destructor to delete it
+		  --> main concern -- what if two poiter point the same location --> so we need one pointer
+		  	to keep track that this doesnot happen
+		  	
+		  	three types --
+		  	
+		  	1 - unique pointer
+		  	
+		  	2 - shared pointer -- easy for work
+		  	
+		  		a basic layout of shared pointer
+		  		
+		  								HEAP
+		  								0X100H	
+		  							[ 101 | Gourav | 8000.00f]
+		  		    STACK MEMORY
+		  		[ 
+		  			mptr
+		  		   [    0x100H   ]
+		  		   ....
+		  		   ....
+		  		   ....
+		  		   
+		  		]
+		  		<-- shared pointer--->
+		  	
+		  	3 - weak pointer (token which can convert to shared pointer)
+		  	
+		  	use header --> <memory>
+		  	
+		  	
+--> use class for resource management --> called as scope based resource management --> use constructor for 
+					acquire resource and delete resource for destructor 
+ 	
+ 	
+--> use std::make_shared<classname> --> instead of new --> its a good practice to use make_shared 
+
+
+--> made stack using list
+
+
+--> casting 
+
+	static_cast<target type> (expression) --> dont do downcast with it(use dynamic cast)
+		--> it also has a assertion
+		--> convert enum to int
+		--> if you want to convert type a to type b with no relation or hierarchy
+		--> you cannot change const to another with this (use const_cast)
+		
+		
+	dynamic_cast<target type> (expression) --> cast when parent-child runtime polymorphism is in 
+		picture
+			a - converting reference --> if fails then throw exception so use always try catch
+			b - converting pointer --> if conversion fails we get nullptr	
+			
+	if u do dynamic cast atleast one member function of parent class has to marked as virtual 
+	coz this cast introduced for runtime polymorphism 
+	
+	if program is based on upcasting always marked your parent destructor as virtual coz if u dont do 
+	it then child constructor doesnot called
+	
+	
+	
+dynamic method dispatched --> it happen after a late binding  
