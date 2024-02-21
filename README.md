@@ -267,7 +267,7 @@ Incorporating these practices and principles into your development workflow can 
 
 ## Modern C++ Syntax
 
-```cpp
+
 // Old Syntax
 int arr[] = {1, 2, 3};
 Engine e1(1, 2, 3);
@@ -340,7 +340,7 @@ C++ is not merely an extension of the C language; it draws inspiration from both
 
 Using the `using namespace std;` directive in C++ is generally discouraged due to potential namespace conflicts and ambiguity. By importing the entire `std` namespace into the current scope, you risk shadowing or overriding existing identifiers, leading to unexpected behavior or compilation errors:
 
-```cpp
+
 int cout = 10;
 int endl = 10; // Valid without "using namespace std;"
 
@@ -349,7 +349,7 @@ int endl = 10; // Valid without "using namespace std;"
 
 In modern C++, it's recommended to use partial header files instead of including the entire standard library. This practice reduces compilation times and avoids unnecessary dependencies. For instance, instead of including the extensive `bits/stdc++.h`, selectively include only the necessary headers to streamline compilation:
 
-```cpp
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -557,7 +557,7 @@ This document explores the concepts of call by lvalue and rvalue in C++, their k
 
 ##Example
 
-```bash
+
 
     #include<iostream>
     #include<list>
@@ -590,7 +590,6 @@ This document explores the concepts of call by lvalue and rvalue in C++, their k
         
         return 0;
     }
-```
 
 ## std::move Function and Lvalue/Rvalue Conversions
 
@@ -690,7 +689,7 @@ The `std::move` function takes an lvalue as input and returns an rvalue. This im
 Declares a function as non-throwing, indicating it won't throw exceptions.
 
 ## Syntax
-```cpp
+
 void show() noexcept {}
 
 # Benefits
