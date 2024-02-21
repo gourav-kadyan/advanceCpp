@@ -97,7 +97,7 @@ Create the following files using the `touch` command:
 
 **Memory Leak Detection:**
 
-```markdown
+
 ## Checking for Memory Leaks
 
 1. **Compile with Address Sanitizer:**
@@ -117,7 +117,6 @@ Ensure that member functions use data members of the class whenever possible. If
 
 **Constructors and Assignment Operators:**
 
-```markdown
 ## Constructors and Assignment Operators
 
 When specifying constructors and assignment operators, consider the following:
@@ -133,7 +132,6 @@ Default member functions can be used to initialize data members directly, e.g., 
 
 **Object-Oriented Programming (OOP) Principles:**
 
-```markdown
 ## OOP Principles
 
 While not enforcing strict OOP structures, here are relevant principles to consider:
@@ -146,7 +144,7 @@ While not enforcing strict OOP structures, here are relevant principles to consi
 
 **Go Language and OOP:**
 
-```markdown
+
 ## OOP in Go
 
 Go doesn't directly support traditional OOP structures like classes and inheritance. However, you can still apply OOP principles:
@@ -157,7 +155,7 @@ Go doesn't directly support traditional OOP structures like classes and inherita
 
 **Coding Practices and Recommendations:**
 
-```markdown
+
 ## Coding Practices and Recommendations
 
 * Follow good coding conventions (e.g., camelCase for variables, PascalCase for methods).
