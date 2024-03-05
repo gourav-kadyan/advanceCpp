@@ -1,0 +1,181 @@
+***********************************VISION -- PROGRAM RUN AS EFFICIENT AS POSSIBLE**************************************
+
+
+
+Processor --> 
+
+    it is a hardware device based on SILICON (At least till today) which execute instruction given 
+    e.g. Intel i5 12 gen 1230u
+
+Core --> 
+
+    It is a section of the processor which is capable of executing ONE WHOLE PROCESS 
+
+
+ 
+***IMP --> single thread , single process, synchronous programs
+
+
+Delay --> I/O delay, CPU - BOUND Delay 
+
+
+Buffer --> Reserving a Memory for so and other reason called buffer like Memory reserve for 
+            only  cout 
+
+
+/*
+    1 - What are we doing?
+
+        we are trying to do more work in our work per second 
+
+        or 
+
+        i want more efficiency in my  program for which i want to use my hardware better
+
+
+    2 - How?
+
+        by using the OS support. We are requiring OS to run independent section of my program parallely if POSSIBLE
+        or concurrently if nothing else works out
+
+    3 - Syntax wise what to do ? 
+
+        each of your independent function can be treated "logical threads" They cna be scheduled  by OS  if you 
+        create a thread object and attach it to one callable with right parameters
+
+        also remember to wait for threads to finish
+
+        or 
+
+        DETACH FROM SPAWNED threads
+
+    4 - why did you join?
+
+        because main thread cannot finish before other threads as spawned threads need to report back to main via 
+        signals.
+        if main is already finished, then thread has to become daemon thread (a thread is running in background).
+
+    5 - What is std::thread?
+
+        it is a class which is a wrapper around a native platform specific OS-level thread. 
+
+    6 - Can we copy threads?
+
+        no, because once a mini program is started, copying it would mean duplicating and doing the same thing again
+
+    7 - Can we make a container of threads?
+
+        Yes, since thread instances are objects, you can do This
+
+    8 - what is race condition? 
+
+        2 or more threads are fighting to perform a write operation on a shared Memory
+
+    9 - what is a critical section?
+
+        any part of the program where race  condition can happen to cause data integrity issue, incoherent output or 
+        worse
+
+    10 - how to avoid race condition ? 
+
+        take action to synchronize threads especially for critical sections
+
+    11 - Syntactically, how to do this?
+
+        - mutex : a binary semaphore which needs to locked/unlocked manually
+
+        - lock_guard : which is a scope based lock that uses RAII
+
+        - unique_lock : It can be locked/unlocked manually as well with RAII rules
+
+        - recursive locks : if you want to use reucrssion and thread 
+            [what the hell are you doing for?]
+
+        - condition variable : to implement synchronization based on PRODUCER/CONSUMER models
+
+    12 - How will I know which one to use ?
+
+        - Common Sense
+
+    13 - How will I learn all this?
+
+        - that where Harshit comes into the picture
+        - Also, CPPCON and concurreny in action books are great resources
+
+    14 - All this sound like OS level stuff. Why am i learning it ? 
+
+        - Because you choose to become system level developer
+        - Because all developers need to use hardware efficiently
+
+    15 - What is this synchronous and asynchronous ?
+
+        - if you start command/instruction N only after command/instruction N-1 is fully completed, execution is 
+          synchronous
+
+        else 
+        asynchronous
+
+    16 - Is async the same async I have learnt in javascript /and/or other languages?
+
+        - Yes 
+
+    17 - what if i dont understand  all this before the marathon? 
+
+        - well .........
+            - I heard TCS is still hiring      
+*/
+
+/*
+    to run multiple execution do this in terminal 
+
+    for((i=0;i < 50; i++)); do ./app ; done
+*/
+
+
+/*
+    try{
+        mt.lock()
+        amount = -10;
+        PerformActionAfterModification();
+        mt.unlock();
+    }
+    catch(std::runtime_error& ex){
+
+        std::cout << ex.what() << '\n';
+        RecordLogsOfException();
+    }
+
+
+    solution --> acc to RAII --> better is dont use mutex wrap up in object --> lock_guard
+    try{
+        std::lock_guard<std::mutex> lk(mt);
+        amount = -10;
+        PerformActionAfterModification();
+    }
+    catch(std::runtime_error& ex){
+
+        std::cout << ex.what() << '\n';
+        RecordLogsOfException();
+    }
+    
+    ** KINDLY JUST USE LOCK GUARD INSTEAD OF MUTEX **
+    
+*/
+
+
+Concurrency -->
+
+    Concurrency is a concept in computer science and software engineering that refers to the ability of a computer 
+    system to execute multiple tasks simultaneously. In a concurrent system, tasks may start, run, and complete in 
+    overlapping time periods, rather than strictly one after another. This does not necessarily mean that tasks are 
+    executing at the exact same time on a single processor, but rather that the system is managing multiple tasks in 
+    such a way that they appear to make progress simultaneously.
+
+    Concurrency is important for maximizing the utilization of computational resources and improving system 
+    responsiveness. It enables systems to handle multiple tasks concurrently, which can lead to better performance and 
+    responsiveness, especially in systems with multiple processors or cores.
+
+    There are various concurrency models and techniques, including multithreading, multiprocessing, asynchronous 
+    programming, and parallel computing, each suited to different types of applications and hardware architectures.
+    Concurrency can introduce challenges such as race conditions, deadlocks, and resource contention, which need to be 
+    carefully managed through synchronization mechanisms like locks, semaphores, and message passing.

@@ -48,6 +48,8 @@ PART 1 - CPP topics but modern cpp style
 	21 - make_shared
 	22 - static_cast<target type> (expression)
 	23 - dynamic_cast<target type> (expression)
+	24 - vtable -- non modern
+	25 - dynamic method dispatched -- non modern
 
 
 	
@@ -147,7 +149,8 @@ PART 1 - CPP topics but modern cpp style
 
 
 
--->{} this use as for inclass initialization --> when default constructor is enabled and use camel case for variable and always use pascal metholodies to make file to distinguish to easily understand and avoid confusion
+-->{} this use as for inclass initialization --> when default constructor is enabled and use camel case for 
+   variable and always use pascal metholodies to make file to distinguish to easily understand and avoid confusion
 
 
 --> default constructor enabled --> we use default after that ==> modern cpp syntax like Car() = default 
@@ -181,7 +184,8 @@ PART 1 - CPP topics but modern cpp style
 	
 --> Const Keyword
 
-	1 - const is applied to the token(set of char. that has meaning in progrmming like int) on its immediate left.
+	1 - const is applied to the token(set of char. that has meaning in progrmming like int) on its immediate 
+	left.
 
 	If there is nothing to the left of const, apply const on the token to its immediate right
 	
@@ -209,8 +213,8 @@ PART 1 - CPP topics but modern cpp style
 --> WHY WE USE ENUM CLASS INSTEAD OF ENUM 
 
 	enum --> data are two type --> real value like salary ,age
-                               --> categorical data --> like option type like gender, week, months which has fixed 
-                               count
+                               --> categorical data --> like option type like gender, week, months which has 
+                               fixed count
 
     for dealing categorical data we use enum to deal it
     so that it can give one out of option and user dont abuse it
@@ -228,8 +232,7 @@ PART 1 - CPP topics but modern cpp style
                 enum Gear g1 = Gear::FIRST;
                 if(r1 == g1) // this condition need to give error but it give true and also compiler should block
                                 the comparison of enums of different types
-                               wrong ==  1 - IF all enums in same file then compiler giver error
-                                2 - If not then not giving error
+                               
 
             --> like we have func name magic --> void Magic(int number){ cout << number * number << endl;}
                 and we have enum Rank r1 = Rank::FIRST;
@@ -391,7 +394,7 @@ PART 1 - CPP topics but modern cpp style
 		       2 - always verify whether auto can be used where you are using it(context)
 		       		magic(auto n1){ } -- support in cpp20
 
-		       3 - more u use auto it make bad you code readability
+		       3 - more u use auto it make bad your code readability
 		       
 		       
 		       
@@ -486,7 +489,8 @@ PART 1 - CPP topics but modern cpp style
 				
 				--> done by call by pointer
 				
-				--> i have lots of data in heap and it was originally in func and i want to access 
+				--> i have lots of data in heap and it was originally in func and i want to 
+				access 
 				the data in func2 such a way func no longer owns the data and without coping
 				
 				--> Thats a great way to optimize memory
@@ -779,4 +783,274 @@ nullptr --> lie in 1 scenario of above knowledge --> NULL --> imposter basically
 	
 	
 	
-dynamic method dispatched --> it happen after a late binding  S
+dynamic method dispatched --> it happen after a late binding 
+
+
+
+
+
+************************************* Day 5 Harshit ***********************************************************
+
+
+
+
+new vs make_shared --> in new first we copy in pointer and then assign it 
+
+		  --> but in make_shared we dont copy in pointer we just directly assign --> we save 8byte of mem.
+
+
+
+
+encapsulation--> Hide the internal representation of the object from any party/entity/line of code outside the
+		 class. You can use data binding to access this by simply providing member functions as a layer 
+		 between data and outside world
+
+
+
+data binding --> the concept of relating/binding member functions with data member
+             --> if the function inside the class, it has to atleast use one data member
+             
+             
+   
+Abstraction --> Hiding the implementation detail of a behaviour(functionalities) so that
+		a - it allows programmer to reimplement a functionality in different way down the class
+	            hierarchy by overriding in child classes
+	        b - by using abstraction we can talk in "ABSTRACT" terms while explaining behaviour
+	        
+	        
+	        
+sample question --> create a banking system where i can record customer details, account details, card 
+		    details and cheque details 
+		    account may have sub categories
+		    
+		    expected operations are : ability to create new account, 
+		    
+		    find details of an account based on id, calculate min , max , total , avg bank balance and 
+		    return details of cheque using cheque id
+		    
+		    
+		
+Tips --> IMPORTANT --> 1 - Read the problem statement completely twice before doing anything
+		       2 - Use header guard
+		       3 - Compile program only when it is fully completed
+		       4 - Always work on individual function at a time onlhy. 
+		           breakdown entire solution into small small sections.
+		       5 - Always draw a diagram
+		       6 - Spend more time in designing the solution for each functionality rather than
+		           implementing it.
+		      
+		      
+	
+	
+how to build program --> scenario 1 - I want to model some data. bind members with accessible perform 
+				      basic opertions
+				      
+				           - create a simple class
+				           - bind data members with member functions. keep all data private
+				           
+	   		scenario 2 - I want to create types and subtypes so that I can generalize operalizes 
+	   			     or implement specific solutions for specific subcategoriess
+	   			     
+	   			     create a parent class and approprite child classes . then ask 
+	   			     appropriate questions --
+	   			     
+	   			     	   - are all methods implemented in all cleasses? 
+	   			     	   	if yes, no need for pure virtual function
+	   			     	   	
+	   			           - are we going to create objects of multiple child classes and store
+	   			             together in the same container  
+				  	        if yes, we need to use upcasting. Base class method must be 
+				  	        marked as virtual and destructor must be marked as virtual
+				  	        
+				  	   - Do we need to make the base class abstract/do we need to prevent
+				  	     instantiation (object creation for base class?)
+				  	        Make sure at least 1 method in the parent is markes as pure 
+				  	        virtual
+				  	     	
+				  	   - I'm not very sure if method will be overriden. Maybe in future Not 
+				  	     sure currently
+				  	        Mark all such method as virtual
+
+
+
+	
+dynamic dispatched method --> deciding which method going to be call at runtime by using the type of method
+			  --> it is not runtime polymorphism it uses it 
+			  
+			  
+	sudo code to understand all
+	
+	class A {
+	.......
+	public:
+	  virtual void display(){
+	    std::cout << "A display\n";
+	  }
+	  void test(){
+	   std::cout << "A test\n";
+	  }
+	};
+		       
+	class B : public A{
+	....
+	public:
+	  void display() override{
+	    std::cout << "B display\n";
+	  }
+	  void test(){
+	   std::cout << "B test\n";
+	  }
+	};	
+	
+	
+	rule 1 - for a class that contains atleast one virtual method
+		A virtual is created in memory. this table has addresses for the virtual methods functions
+		
+		
+		class A   Vtable
+		[A::Display()::0x10045H]
+		<----  0x77H       -----> 
+        		|
+        		v
+        		[vptr] -- hidden data member --> static --> *vptr
+        		
+        		why it is dynamic -- coz object intantiate in runtime
+        		
+        rule 2 - if a class inherits from a parent class that also contains a vtable, the child will also implement
+        	 its own vtable
+        	 
+        	 ex - 
+        	 
+        	 A* ptr = new B();
+        	 ptr->Display();
+        	 
+        	 - step 1 : verify where is Display()
+        	            - go to class whose type is ptr type
+        	            - Go to A class verify whether this function
+        	            - is at least declared in class A
+        	            
+        	 - step 2 : verify is the method is non-virtual. If yes, call the function -- lhs type
+        	            If function is virtual proceed to step 3
+        	            
+        	 - step 3 : Now find the type of RHS(object type). Find the vtable for object and call function
+        	 	    based ON ENTRY OF VTABLE
+        	 	    
+        	 	    
+        	 if func is virtual and not present in class B then vptr of class B link to class A to get the 
+        	 func     
+        	 	     
+        	 
+        	 
+        	 
+--> NOTES* -- for non virtual whatever is the type of lhs --> thats class function will call
+	   -- for virtual, it find the latest entry of the func --> go to parent to child --> to find latest func
+	   -- if you want specific class, the use class name and scope resolution and func name
+	   
+	   **WHOLE PROCESS IS DYNAMIC METHOD DISPATCH
+	   
+	   
+	
+Scenario --> Assumption : Pointer is parent
+		
+		1 - i want to call fn. it exist in parent and child too but fn is non-virtual
+			then parent - fn --> called
+			
+		2 - i want to call fn. it exist in parent and child too and fn is virtual 
+			MOST DERIVED VERSION OF FN WILL CALLED FROM THE INHERITANCE HIERARCHY
+			then child - fn --> called
+			
+		PARENT----+
+		|	  |
+		|	CHILD2
+		|
+		CHILD1
+		
+		PARENT *P = NEW CHILD2 --> HIERARCHY IS PARENT TO CHILD2 --> NO ROLE OF CHILD1 
+	   
+			
+		3 - i want to call fn. it exist in parent and not in child 
+			then fn is virtual or non-virtual parent - fn --> called
+			if it is pure virtual then give --> error
+			
+		4 - i want to call fn, its not exist in parent but present in child, fn is non-virtual
+			PARENT POINTER IS PRACTICALLY USELESS WE HAVE TO DOWNCAST
+			then we have to do downcast to call child - fn
+			
+		
+		
+	   
+ ERROR -----------------------> 
+ 
+ 	1 - #undefined reference to <function name>
+ 		
+ 		- the function does not exist/implementation/body doesnot exist
+ 	
+ 	
+ 	
+ 	2- <identifier> not declared in scope
+ 	
+ 		- function name being used doesnot appear in declared symbol
+ 		- variable declared doesnot appear in available names
+ 		
+        		
+        
+        3 - redefination error 
+        	
+        	- for class - when you forgot header guard and #include the file multi times
+        	- and multi defination of the same function
+        	
+        4 - too few arguments error 
+        
+        	- happens when you call func in less no. of arguments
+        	
+        5 - too many arguments error
+        	
+        	- happens when you call func with more no. of arguments
+        	
+        6 - diff parameter error/ invalid initialization of reference
+        
+        	- happen when you give wrong data type to parameters
+        	- remember its different in different data types
+        	- sometimes compiler implicitly convert then -- maybe code works or give logical or others error
+        	- when you use call by reference and you giving wrong data type - mostly in reference
+        	
+        7 - object creation error/ no matching function call error
+        
+        	- the parameter you are given are not match as per the declaration
+        	- all parameter are passed by value 
+        	- invalid initialization happen when call by reference
+        	
+        	
+        	
+ ****************************** WEEK 2 Day 1 Harshit ***********************************************
+ 
+ 
+ Protocols: 
+ 
+ 	Mandatory expectation (non negotiable): 
+ 		
+ 		-proper indentatin, naming convention and appropriate use of comments
+ 		-code in multiple files -- separate header and implementation
+ 		-all functionalities working with proper output, proper corner case
+ 		-Main side client code need to be complete
+ 		
+ 	Less relevant:
+ 	
+ 		-use of smart pointer -- for week 1
+ 		-custom exceptions -- for week 1 and week 2
+ 		
+ 		
+ 		
+ 
+ 
+ 
+ 
+        	
+        
+        
+        
+        
+        
+        
+		        
+		    

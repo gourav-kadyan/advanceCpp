@@ -1,0 +1,28 @@
+Tourist --> 
+
+number : usigned long 
+type -> enum claa --> Cab, Bus , Bike
+seat_count : usigned int
+per hour booking charge : float
+permit --> class -> shared pointer
+
+Permit --> 
+
+serial number : usigned long
+permit type : enum class -> lease or owned
+permit duration left : usigned int 
+
+
+functionalities --> 
+
+
+create 3 tourist vehical --> vector 
+
+N instance of pointer print --> cond --> 1 - seat_count >= 4 and permit type - lease
+
+fun - avg per hour booking charge --> parameter type matching 
+
+max -- per hour charge --> print --> Permit::serial number
+
+N return instance of touristvehical
+

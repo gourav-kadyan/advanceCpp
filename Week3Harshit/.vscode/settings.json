@@ -1,0 +1,13 @@
+{
+    "C_Cpp.default.compilerPath": "/usr/bin/g++-9",
+    "files.associations": {
+        "*.c": "c",
+        "condition_variable": "cpp",
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "algorithm": "cpp"
+    }
+}

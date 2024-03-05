@@ -1,0 +1,41 @@
+Command Line (basic usage)
+git version control 
+Makefiles and Cmake
+Great Understanding of OOP!
+
+- Effective Modern CPP --> before Project
+- C++ the Complete Reference --> basic
+
+-   **********SEARCH SYNCHRONIZATION PRIMITIVES 
+
+
+******ANY EXCEPTION ARE DISCARDED --> ONLY OPTION IS FUTURE EXCEPTION --> WITH THE HELP OF FUTURE EXCEPTION
+
+
+****************ASYNC TO DO TWO JOBS
+
+                --> PASSING VALUES IN FUTURE
+                --> CAPTURE RETURN VALUES
+
+
+
+*************TOPICS************
+
+1 - std::thread
+    - one thread
+    - container of thread
+    - std::mutex for race condition
+    - std::lock_guard to manage mutex based on scope
+2 - if initializer
+3 - std::optional
+4 - structure binding
+5 - std::variants
+    - functional polymorphism
+    - std::visit, std::hold_alternative
+6 - std::condition_variable
+    -unique_lock, notify mechanism
+7 - std::async
+    - with future_input
+    - without future_input
+8 - fold expressions
+9 - variadic templates

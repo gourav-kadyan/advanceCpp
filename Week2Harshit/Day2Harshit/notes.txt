@@ -1,0 +1,14 @@
+void Adaptor( LOGIC ) --> just use lamda as a carrying agent 
+
+
+1 - app starts
+    -- App Id it has to be carried into second funtion
+
+2 - network setup 
+    -- we get ip address and port number, has to be carried in third funtion
+
+3 - using network config, setup data transfer to a database. connection will be established
+    -- we get database connection cursor object. take this to fn 4
+
+4 - using the database access pointer, write data into database
+    -- use cursor to execute write query 

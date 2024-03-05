@@ -1,0 +1,15 @@
+By default the cpp codes are single thread coz only main is thread if you dont have any thread
+
+thread is like a light weight process -> process is dividing into multiple threads
+
+to create thread --> use to include thread --> cpp11 and onwards
+
+Ways to create threads in c++ 11
+
+    function pointers 
+    lambda function
+    functors
+    member function
+    static member function
+
+In main --> if you are making multiple thread there is no gurantee which one firstly make
